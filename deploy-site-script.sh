@@ -5,9 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 # Check if user is root
 [ $(id -u) != "0" ] && { echo "${CFAILURE}Error: You must be root to run this script${CEND}"; exit 1; }
 # Configure
-MYSQL_ROOT_PASSWORD="a20090809"
-MYSQL_NORMAL_USER="punktus0308"
-MYSQL_NORMAL_USER_PASSWORD="a96629411aa"
+MYSQL_ROOT_PASSWORD=""
+MYSQL_NORMAL_USER=""
+MYSQL_NORMAL_USER_PASSWORD=""
 # Check if password is defined
 if [[ "$MYSQL_ROOT_PASSWORD" == "" ]]; then
     echo "${CFAILURE}Error: MYSQL_ROOT_PASSWORD not define!!${CEND}";
@@ -131,8 +131,8 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
 
-    server_name punktus.club;
-    root /var/www/backend/public;
+    server_name your_site;
+    root /var/www/your_site_folder/public;
 
     
     # 防止人家iframe你的網站
