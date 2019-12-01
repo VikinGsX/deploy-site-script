@@ -7,7 +7,7 @@ then
 echo "${CFAILURE}錯誤: ${colorPath}檔案不存在!!! ${CEND}";
 exit 1;
 else
-source ./color-config
+source ./color-config.sh
 fi
 
 echo "********************************************************"
@@ -22,7 +22,7 @@ sleep 5s
 export DEBIAN_FRONTEND=noninteractive
 
 # Check if user is root
-[ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
+# [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
 
 if [  $(id -u) != "0" ]
 then 
