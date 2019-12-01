@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # check import config
-colorPath = "./color-config"
-if [ -f ${colorPath} ]
+
+if [ -f "./color-config"]
 then
 echo "${CFAILURE}錯誤: ${colorPath}檔案不存在!!! ${CEND}";
 exit 1;
