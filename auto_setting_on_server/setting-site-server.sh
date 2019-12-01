@@ -1,10 +1,24 @@
 #!/bin/bash
 
+# Check if user is root
+# [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
+
+if [  $(id -u) != "0" ]
+then 
+    echo "當前使用者並非root,正在切換為root..."
+    sudo su
+    sleep 5s
+else
+    echo "已經是root,準備進行設定系統....."
+    sleep 5s
+fi
+
+
 # check import config
 
 if [ -f "./color-config"]
 then
-echo "${CFAILURE}錯誤: ${colorPath}檔案不存在!!! ${CEND}";
+echo -e "\033[1;31m 錯誤:檔案不存在!!! \033[0m";
 exit 1;
 else
 source ./color-config.sh
@@ -20,18 +34,6 @@ sleep 5s
 #test
 # apt-get 安裝期間不會出現對話框
 export DEBIAN_FRONTEND=noninteractive
-
-# Check if user is root
-# [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
-
-if [  $(id -u) != "0" ]
-then 
-    echo "當前使用者並非root,正在切換為root..."
-    sudo su
-    sleep 2s
-else
-    echo "已經是root,準備進行設定系統....."
-fi
 
 
 # Force Locale
