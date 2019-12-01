@@ -17,7 +17,7 @@ echo " Ubuntu16.04/Nginx/Mysql "
 echo "********************************************************"
 sleep 5s
 
-
+#test
 # apt-get 安裝期間不會出現對話框
 export DEBIAN_FRONTEND=noninteractive
 
