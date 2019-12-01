@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # check import config
-colorPath = "/color-config.sh"
-if[! -d colorPath]
+colorPath = "./color-config"
+if [ -f ${colorPath} ]
 then
 echo "${CFAILURE}錯誤: ${colorPath}檔案不存在!!! ${CEND}";
 exit 1;
