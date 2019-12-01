@@ -2,7 +2,8 @@
 
 # check import config
 colorPath = "/color-config.sh"
-if[! -d colorPath]; then
+if[! -d colorPath]
+then
 echo "${CFAILURE}錯誤: ${colorPath}檔案不存在!!! ${CEND}";
 exit 1;
 else
@@ -23,7 +24,8 @@ export DEBIAN_FRONTEND=noninteractive
 # Check if user is root
 [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
 
-if [  $(id -u) != "0" ];then 
+if [  $(id -u) != "0" ]
+then 
     echo "當前使用者並非root,正在切換為root..."
     sudo su
     sleep 2s
