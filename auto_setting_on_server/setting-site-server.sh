@@ -8,9 +8,11 @@ then
     echo "當前使用者並非root,正在切換為root..."
     sudo su
     sleep 5s
+    install()
 else
     echo "已經是root,準備進行設定系統....."
     sleep 5s
+    install()
 fi
 
 
@@ -24,6 +26,9 @@ else
 source ./color-config.sh
 fi
 
+function install()
+{
+    
 echo "********************************************************"
 echo "${CTITLE}【 Laravel 環境系統安裝 】 ${CEND}"
 echo ""
@@ -148,8 +153,8 @@ sed -i "s/user www-data;/user www;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
 
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
+rm -f /etc/nginx/sites-enabled/default
+rm -f /etc/nginx/sites-available/default
 
 cat >  /etc/nginx/sites-available/default << EOF
 
@@ -263,8 +268,11 @@ sed -i "s/#START=yes/START=yes/" /etc/default/beanstalkd
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
 clear
-echo "--"
-echo "--"
-echo "It's Done."
-echo "--"
-echo "--"
+echo "--------------------------------------------------------"
+echo ""
+echo "安裝完成!!!!"
+echo ""
+echo "--------------------------------------------------------"
+
+
+}
