@@ -252,9 +252,9 @@ then
     echo "當前使用者並非root,正在切換為root..."
     sudo su
     sleep 5s
-    install ()
+    install
 else
     echo "已經是root,準備進行設定系統....."
     sleep 5s
-    install ()
+    install
 fi
