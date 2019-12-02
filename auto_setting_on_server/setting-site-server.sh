@@ -8,18 +8,11 @@ then
     echo "當前使用者並非root,正在切換為root..."
     sudo su
     sleep 5s
-    install()
-# else
-#     echo "已經是root,準備進行設定系統....."
-#     sleep 5s
-#     install()
+else
+    echo "已經是root,準備進行設定系統....."
+    sleep 5s
 fi
 
-
-
-
-function install()
-{
 
 # check import config
 
@@ -31,7 +24,7 @@ else
 source ./color-config.sh
 fi
 
-    
+
 echo "********************************************************"
 echo "${CTITLE}【 Laravel 環境系統安裝 】 ${CEND}"
 echo ""
@@ -276,6 +269,3 @@ echo ""
 echo "安裝完成!!!!"
 echo ""
 echo "--------------------------------------------------------"
-
-
-}
