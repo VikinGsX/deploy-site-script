@@ -1,17 +1,7 @@
 #!/bin/bash
-
-# Check if user is root
-# [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
-
-if [  $(id -u) != "0" ]
-then 
-    echo "當前使用者並非root,正在切換為root..."
-    sudo su
-    sleep 5s
-else
-    echo "已經是root,準備進行設定系統....."
-    sleep 5s
-fi
+function install()
+{
+    
 
 
 # check import config
@@ -83,8 +73,6 @@ php7.2-json \
 php7.2-gd \
 php7.2-mbstring \
 php7.2-bcmath \
-
-
 # php7.2-cli php7.2-dev \
 # php7.2-memcached \
 # php7.2-imap  \
@@ -93,23 +81,6 @@ php7.2-bcmath \
 # php-xdebug php-pear
 
 
-# Setup Some PHP-FPM Options
-sed -i "s/error_reporting = .*/error_reporting = E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED/" /etc/php/7.2/fpm/php.ini
-sed -i "s/display_errors = .*/display_errors = Off/" /etc/php/7.2/fpm/php.ini
-sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.2/fpm/php.ini
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini
-sed -i "s/upload_max_filesize = .*/upload_max_filesize = 50M/" /etc/php/7.2/fpm/php.ini
-sed -i "s/post_max_size = .*/post_max_size = 50M/" /etc/php/7.2/fpm/php.ini
-sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/fpm/php.ini
-# sed -i "s/listen =.*/listen = /var/run/php7.2-fpm.sock/" /etc/php/7.2/fpm/pool.d/www.conf
-# sed -i "s/listen =.*/listen = 127.0.0.1:9000/" /etc/php/7.2/fpm/pool.d/www.conf
-
-# Set PHP-FPM User
-sed -i "s/user = www-data/user = www/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = www/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/listen\.owner.*/listen.owner = www/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = www/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.2/fpm/pool.d/www.conf
 
 echo "--------------------------------------------------------"
 echo "${CYELLOW}PHP相關設定完畢!!!${CEND}"
@@ -119,7 +90,7 @@ seepl 3s
 
 
 # Install Nginx
-apt-get install -y --force-yes nginx
+apt-get install -y  nginx
 
 # Setup Some fastcgi_params Options
 cat > /etc/nginx/fastcgi_params << EOF
@@ -145,8 +116,8 @@ fastcgi_param	REDIRECT_STATUS		200;
 EOF
 
 # Set The Nginx
-sed -i "s/user www-data;/user www;/" /etc/nginx/nginx.conf
-sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
+# sed -i "s/user www-data;/user www;/" /etc/nginx/nginx.conf
+# sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
 
 rm -f /etc/nginx/sites-enabled/default
@@ -269,3 +240,21 @@ echo ""
 echo "安裝完成!!!!"
 echo ""
 echo "--------------------------------------------------------"
+
+}
+
+
+# Check if user is root
+# [ $(id -u) != "0" ] && { echo "${CFAILURE}錯誤: 使用者必須為root!! ${CEND}"; exit 1; }
+
+if [  $(id -u) != "0" ]
+then 
+    echo "當前使用者並非root,正在切換為root..."
+    sudo su
+    sleep 5s
+    install ()
+else
+    echo "已經是root,準備進行設定系統....."
+    sleep 5s
+    install ()
+fi
