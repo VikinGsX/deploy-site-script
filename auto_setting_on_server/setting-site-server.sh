@@ -16,6 +16,11 @@ else
 fi
 
 
+
+
+function install()
+{
+
 # check import config
 
 if [ -f "./color-config"]
@@ -26,8 +31,6 @@ else
 source ./color-config.sh
 fi
 
-function install()
-{
     
 echo "********************************************************"
 echo "${CTITLE}【 Laravel 環境系統安裝 】 ${CEND}"
