@@ -9,10 +9,10 @@ then
     sudo su
     sleep 5s
     install()
-else
-    echo "已經是root,準備進行設定系統....."
-    sleep 5s
-    install()
+# else
+#     echo "已經是root,準備進行設定系統....."
+#     sleep 5s
+#     install()
 fi
 
 
